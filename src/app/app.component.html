@@ -1,6 +1,15 @@
 <ul>
     @for (aluno of ALUNOS; track aluno.matricula) {
-        <li>{{aluno.matricula}} - {{aluno.nome}} -
+        <li>
+            {{aluno.matricula | matricula}} -
+
+            @if(aluno.idade < 18) {
+                {{aluno.nome | uppercase}}
+            } @else {
+                {{aluno.nome | titlecase}}
+            }
+
+            - {{aluno.idade}}
             <button (click)="remover(aluno)">X</button>
         </li>
     }
