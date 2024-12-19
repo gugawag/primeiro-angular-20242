@@ -29,4 +29,29 @@ export class AppComponent {
     this.ALUNOS = this.ALUNOS.filter(
         aluno => aluno.matricula !== alunoARemover.matricula);
   }
+
+  curtir(aluno: Aluno) {
+    aluno.likes += 1;
+  }
+
+  descurtir(aluno: Aluno) {
+    if (aluno.likes > 0) {
+      aluno.likes -= 1;
+    }
+  }
+
+  avaliar(aluno: Aluno) {
+    aluno.curti = !aluno.curti;
+  }
+
+  nomeIconeCurtir(aluno: Aluno): string {
+    if (aluno.curti === undefined) {
+      return 'thumbs_up_down';
+    }
+    if (aluno.curti) {
+     return 'thumb_up';
+    }
+    return 'thumb_down';
+  }
+
 }
