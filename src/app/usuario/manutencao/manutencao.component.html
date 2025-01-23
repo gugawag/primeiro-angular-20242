@@ -1,0 +1,13 @@
+<mat-form-field>
+    <input matInput [(ngModel)]="alunoDeCadastro.nome" placeholder="nome">
+</mat-form-field>
+<br>
+<mat-form-field>
+    <input matInput [(ngModel)]="alunoDeCadastro.matricula" placeholder="matrícula">
+</mat-form-field>
+<br>
+<mat-form-field>
+    <input matInput [(ngModel)]="alunoDeCadastro.idade" placeholder="idade">
+</mat-form-field>
+<br>
+<button mat-raised-button (click)="cadastrar()">Cadastrar</button>

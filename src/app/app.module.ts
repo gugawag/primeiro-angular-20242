@@ -12,11 +12,13 @@ import {MatBadgeModule} from "@angular/material/badge";
 import {MatInputModule} from "@angular/material/input";
 import {MatButton, MatButtonModule} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
+import {LayoutModule} from "./layout/layout.module";
+import {UsuarioModule} from "./usuario/usuario.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    MatriculaPipe
+    MatriculaPipe,
   ],
     imports: [
         BrowserModule,
@@ -27,7 +29,9 @@ import {MatCardModule} from "@angular/material/card";
         MatBadgeModule,
         MatInputModule,
         MatButtonModule,
-        MatCardModule
+        MatCardModule,
+        LayoutModule,
+        UsuarioModule,
     ],
   providers: [
     provideAnimationsAsync()
