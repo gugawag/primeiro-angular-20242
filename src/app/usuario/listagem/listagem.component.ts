@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Aluno} from "../../shared/modelo/aluno";
 import {ALUNOS} from "../../shared/modelo/ALUNOS";
+import {AlunoRestService} from "../../shared/services/aluno-rest.service";
 
 @Component({
   selector: 'app-listagem',
@@ -9,14 +10,29 @@ import {ALUNOS} from "../../shared/modelo/ALUNOS";
   templateUrl: './listagem.component.html',
   styleUrl: './listagem.component.css'
 })
-export class ListagemComponent {
-  ALUNOS = ALUNOS;
+export class ListagemComponent implements OnInit {
+  ALUNOS: Aluno[] = [];
 
-  constructor() {
+  constructor(private alunoService: AlunoRestService) {
   }
+
+  ngOnInit() {
+    this.alunoService.listar().subscribe(
+        alunos => this.ALUNOS = alunos
+    );
+  }
+
   remover(alunoARemover: Aluno) {
-    this.ALUNOS = this.ALUNOS.filter(
-        aluno => aluno.matricula !== alunoARemover.matricula);
+    this.alunoService.remover(alunoARemover.id).subscribe(
+        () => {
+          console.log('removido');
+          const alunoIndx = this.ALUNOS.findIndex(aluno => aluno.id === alunoARemover.id);
+          this.ALUNOS.splice(alunoIndx, 1);
+        }
+    );
+
+    // this.ALUNOS = this.ALUNOS.filter(
+    //     aluno => aluno.matricula !== alunoARemover.matricula);
   }
 
   curtir(aluno: Aluno) {

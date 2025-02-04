@@ -14,6 +14,7 @@ import {MatButton, MatButtonModule} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
 import {LayoutModule} from "./layout/layout.module";
 import {UsuarioModule} from "./usuario/usuario.module";
+import {provideHttpClient} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {UsuarioModule} from "./usuario/usuario.module";
         UsuarioModule,
     ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+      provideHttpClient()
   ],
   bootstrap: [AppComponent]
 })
