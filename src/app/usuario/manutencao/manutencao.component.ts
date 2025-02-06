@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import {Aluno} from "../../shared/modelo/aluno";
 import {ALUNOS} from "../../shared/modelo/ALUNOS";
+import {AlunoRestService} from "../../shared/services/aluno-rest.service";
+import {MensagemSnackService} from "../../shared/services/mensagem-snack.service";
+import {MensagemSweetService} from "../../shared/services/mensagem-sweet.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-manutencao',
@@ -11,17 +15,41 @@ import {ALUNOS} from "../../shared/modelo/ALUNOS";
 })
 export class ManutencaoComponent {
 
-  ALUNOS = ALUNOS;
-  alunoDeCadastro: Aluno;
+  aluno: Aluno;
+  nomeBotaoAcao: string;
+  estahCadastrando: boolean;
 
-  constructor() {
-    this.alunoDeCadastro = new Aluno();
+  constructor(private alunoService: AlunoRestService, private mensagemService: MensagemSweetService,
+              private roteador: Router, private rotaAtivada: ActivatedRoute) {
+    this.nomeBotaoAcao = 'Cadastrar';
+    this.estahCadastrando = true;
+    this.aluno = new Aluno();
+    const idEdicao = this.rotaAtivada.snapshot.params['id'];
+    if (idEdicao) {
+      this.nomeBotaoAcao = 'Atualizar';
+      this.estahCadastrando = false;
+      this.alunoService.pesquisarPorId(idEdicao).subscribe(
+        alunoPesquisado => this.aluno = alunoPesquisado
+      );
+    }
   }
 
-
-  cadastrar() {
-    this.ALUNOS.push(this.alunoDeCadastro);
-    this.alunoDeCadastro = new Aluno();
+  cadastrarOuAtualizar() {
+    if (this.estahCadastrando) {
+      this.alunoService.cadastrar(this.aluno).subscribe(
+          alunoCadastrado => {
+            this.mensagemService.sucesso('Aluno cadastrado com sucesso!');
+            this.roteador.navigate(['/listagem-alunos']);
+          }
+      );
+    } else {
+      this.alunoService.atualizar(this.aluno).subscribe(
+          alunoAtualizado => {
+            this.mensagemService.sucesso('Aluno atualizado com sucesso!');
+            this.roteador.navigate(['/listagem-alunos']);
+          }
+      );
+    }
   }
 
 }

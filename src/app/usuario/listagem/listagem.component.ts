@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Aluno} from "../../shared/modelo/aluno";
 import {ALUNOS} from "../../shared/modelo/ALUNOS";
 import {AlunoRestService} from "../../shared/services/aluno-rest.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-listagem',
@@ -13,34 +14,42 @@ import {AlunoRestService} from "../../shared/services/aluno-rest.service";
 export class ListagemComponent implements OnInit {
   ALUNOS: Aluno[] = [];
 
-  constructor(private alunoService: AlunoRestService) {
+  constructor(private alunoService: AlunoRestService, private roteador: Router) {
   }
 
   ngOnInit() {
     this.alunoService.listar().subscribe(
         alunos => this.ALUNOS = alunos
     );
+
+    this.alunoService.maioresDeIdade().subscribe(
+        maioresDeIdade => console.log(maioresDeIdade)
+    );
   }
 
   remover(alunoARemover: Aluno) {
-    this.alunoService.remover(alunoARemover.id).subscribe(
-        () => {
-          console.log('removido');
-          const alunoIndx = this.ALUNOS.findIndex(aluno => aluno.id === alunoARemover.id);
-          this.ALUNOS.splice(alunoIndx, 1);
-        }
-    );
+    if (alunoARemover.id) {
+      this.alunoService.remover(alunoARemover.id).subscribe(
+          () => {
+            console.log('removido');
+            const alunoIndx = this.ALUNOS.findIndex(aluno => aluno.id === alunoARemover.id);
+            this.ALUNOS.splice(alunoIndx, 1);
+          }
+      );
+    }
 
     // this.ALUNOS = this.ALUNOS.filter(
     //     aluno => aluno.matricula !== alunoARemover.matricula);
   }
 
   curtir(aluno: Aluno) {
-    aluno.likes += 1;
+    if (aluno.likes) {
+      aluno.likes += 1;
+    }
   }
 
   descurtir(aluno: Aluno) {
-    if (aluno.likes > 0) {
+    if (aluno.likes && aluno.likes > 0) {
       aluno.likes -= 1;
     }
   }
@@ -57,6 +66,10 @@ export class ListagemComponent implements OnInit {
       return 'thumb_up';
     }
     return 'thumb_down';
+  }
+
+  alterar(aluno: Aluno) {
+    this.roteador.navigate([`edicao-aluno`, aluno.id]);
   }
 
 }

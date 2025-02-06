@@ -14,6 +14,10 @@ const routes: Routes = [
     component: ManutencaoComponent
   },
   {
+    path: 'edicao-aluno/:id',
+    component: ManutencaoComponent
+  },
+  {
     path: 'listagem-cadastro-alunos',
     component: ListagemCadastroComponent
   },

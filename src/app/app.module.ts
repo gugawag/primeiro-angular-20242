@@ -15,12 +15,12 @@ import {MatCardModule} from "@angular/material/card";
 import {LayoutModule} from "./layout/layout.module";
 import {UsuarioModule} from "./usuario/usuario.module";
 import {provideHttpClient} from "@angular/common/http";
+import {PipesModule} from "./shared/pipes/pipes.module";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MatriculaPipe,
-  ],
+    declarations: [
+        AppComponent,
+    ],
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -33,11 +33,15 @@ import {provideHttpClient} from "@angular/common/http";
         MatCardModule,
         LayoutModule,
         UsuarioModule,
+        PipesModule
     ],
-  providers: [
-    provideAnimationsAsync(),
-      provideHttpClient()
-  ],
-  bootstrap: [AppComponent]
+    providers: [
+        provideAnimationsAsync(),
+        provideHttpClient()
+    ],
+    exports: [
+        MatriculaPipe
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
