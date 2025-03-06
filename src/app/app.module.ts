@@ -16,6 +16,15 @@ import {LayoutModule} from "./layout/layout.module";
 import {UsuarioModule} from "./usuario/usuario.module";
 import {provideHttpClient} from "@angular/common/http";
 import {PipesModule} from "./shared/pipes/pipes.module";
+import {AngularFireModule} from "@angular/fire/compat";
+import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
+import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
+import {firebaseConfig} from "../../firebase.config";
+import {AlunoFireService} from "./shared/services/aluno-fire.service";
+import {IMensagem} from "./shared/modelo/IMensagem";
+import {MensagemSnackService} from "./shared/services/mensagem-snack.service";
+import {MensagemSweetService} from "./shared/services/mensagem-sweet.service";
+import {FirestoreModule} from "./firestore/firestore.module";
 
 @NgModule({
     declarations: [
@@ -33,11 +42,17 @@ import {PipesModule} from "./shared/pipes/pipes.module";
         MatCardModule,
         LayoutModule,
         UsuarioModule,
-        PipesModule
+        PipesModule,
+        FirestoreModule
     ],
     providers: [
         provideAnimationsAsync(),
-        provideHttpClient()
+        provideHttpClient(),
+        // Escolha de qual serviço de mensagens usar
+        {
+            provide: IMensagem,
+            useClass: MensagemSweetService
+        }
     ],
     exports: [
         MatriculaPipe

@@ -3,6 +3,7 @@ import {Aluno} from "../../shared/modelo/aluno";
 import {ALUNOS} from "../../shared/modelo/ALUNOS";
 import {AlunoRestService} from "../../shared/services/aluno-rest.service";
 import {Router} from "@angular/router";
+import {AlunoFireService} from "../../shared/services/aluno-fire.service";
 
 @Component({
   selector: 'app-listagem',
@@ -14,7 +15,7 @@ import {Router} from "@angular/router";
 export class ListagemComponent implements OnInit {
   ALUNOS: Aluno[] = [];
 
-  constructor(private alunoService: AlunoRestService, private roteador: Router) {
+  constructor(private alunoService: AlunoFireService, private roteador: Router) {
   }
 
   ngOnInit() {
@@ -22,9 +23,9 @@ export class ListagemComponent implements OnInit {
         alunos => this.ALUNOS = alunos
     );
 
-    this.alunoService.maioresDeIdade().subscribe(
-        maioresDeIdade => console.log(maioresDeIdade)
-    );
+    // this.alunoService.maioresDeIdade().subscribe(
+    //     maioresDeIdade => console.log(maioresDeIdade)
+    // );
   }
 
   remover(alunoARemover: Aluno) {
@@ -37,9 +38,6 @@ export class ListagemComponent implements OnInit {
           }
       );
     }
-
-    // this.ALUNOS = this.ALUNOS.filter(
-    //     aluno => aluno.matricula !== alunoARemover.matricula);
   }
 
   curtir(aluno: Aluno) {

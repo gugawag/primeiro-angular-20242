@@ -5,6 +5,8 @@ import {AlunoRestService} from "../../shared/services/aluno-rest.service";
 import {MensagemSnackService} from "../../shared/services/mensagem-snack.service";
 import {MensagemSweetService} from "../../shared/services/mensagem-sweet.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {AlunoFireService} from "../../shared/services/aluno-fire.service";
+import {IMensagem} from "../../shared/modelo/IMensagem";
 
 @Component({
   selector: 'app-manutencao',
@@ -19,11 +21,14 @@ export class ManutencaoComponent {
   nomeBotaoAcao: string;
   estahCadastrando: boolean;
 
-  constructor(private alunoService: AlunoRestService, private mensagemService: MensagemSweetService,
+  constructor(private alunoService: AlunoFireService, private mensagemService: IMensagem,
               private roteador: Router, private rotaAtivada: ActivatedRoute) {
     this.nomeBotaoAcao = 'Cadastrar';
     this.estahCadastrando = true;
     this.aluno = new Aluno();
+    this.aluno.curti = false;
+    this.aluno.likes = 0;
+
     const idEdicao = this.rotaAtivada.snapshot.params['id'];
     if (idEdicao) {
       this.nomeBotaoAcao = 'Atualizar';

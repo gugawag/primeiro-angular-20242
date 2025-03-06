@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Aluno} from "../modelo/aluno";
 import {Observable} from "rxjs";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AlunoRestService {
 
-  private URL_ALUNOS = 'http://localhost:3000/alunos';
+  private URL_ALUNOS = environment.URL_ALUNOS
   private MAIOR_IDADE = 18;
 
   constructor(private http: HttpClient) { }

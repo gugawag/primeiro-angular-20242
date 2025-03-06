@@ -11,6 +11,8 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatBadgeModule} from "@angular/material/badge";
 import { ListagemCadastroComponent } from './listagem-cadastro/listagem-cadastro.component';
 import {PipesModule} from "../shared/pipes/pipes.module";
+import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
+import {FirestoreModule} from "../firestore/firestore.module";
 
 
 
@@ -29,7 +31,8 @@ import {PipesModule} from "../shared/pipes/pipes.module";
     MatCardModule,
     MatIconModule,
     MatBadgeModule,
-    PipesModule
+    PipesModule,
+
   ],
   exports: [
       ListagemComponent,

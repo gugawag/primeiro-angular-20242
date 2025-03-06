@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
+import {IMensagem} from "../modelo/IMensagem";
 
 @Injectable({
   providedIn: 'root'
 })
-export class MensagemSnackService {
+export class MensagemSnackService extends IMensagem {
 
-  constructor(private snackBar: MatSnackBar) { }
+  constructor(private snackBar: MatSnackBar) {
+    super();
+  }
 
   sucesso(mensagem: string): void {
     this.abrirSnackBar(mensagem, ['success']);

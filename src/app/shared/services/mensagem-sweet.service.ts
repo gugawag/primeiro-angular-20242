@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import Swal from 'sweetalert2';
+import {IMensagem} from "../modelo/IMensagem";
 
 @Injectable({
   providedIn: 'root'
 })
-export class MensagemSweetService {
+export class MensagemSweetService extends IMensagem{
 
-  constructor() { }
+  constructor() {
+      super();
+  }
 
   sucesso(mensagem: string) {
     Swal.fire(
@@ -31,5 +34,30 @@ export class MensagemSweetService {
         }
     )
   }
+
+    aviso(mensagem: string): void {
+        Swal.fire(
+            {
+                title: 'Aviso',
+                timer: 5000,
+                text: mensagem,
+                icon: 'warning',
+                confirmButtonText: 'Ok'
+            }
+        )
+
+    }
+
+    info(mensagem: string): void {
+        Swal.fire(
+            {
+                title: 'Informacao',
+                timer: 5000,
+                text: mensagem,
+                icon: 'warning',
+                confirmButtonText: 'Ok'
+            }
+        )
+    }
 
 }
