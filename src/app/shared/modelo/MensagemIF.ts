@@ -1,4 +1,4 @@
-export abstract class IMensagem {
+export abstract class MensagemIF {
     abstract sucesso(mensagem: string): void;
 
     abstract erro(mensagem: string): void;

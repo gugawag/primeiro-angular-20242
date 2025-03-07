@@ -6,7 +6,8 @@ import {MensagemSnackService} from "../../shared/services/mensagem-snack.service
 import {MensagemSweetService} from "../../shared/services/mensagem-sweet.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AlunoFireService} from "../../shared/services/aluno-fire.service";
-import {IMensagem} from "../../shared/modelo/IMensagem";
+import {MensagemIF} from "../../shared/modelo/MensagemIF";
+import {AlunoServiceIF} from "../../shared/services/aluno-serviceIF";
 
 @Component({
   selector: 'app-manutencao',
@@ -21,7 +22,7 @@ export class ManutencaoComponent {
   nomeBotaoAcao: string;
   estahCadastrando: boolean;
 
-  constructor(private alunoService: AlunoFireService, private mensagemService: IMensagem,
+  constructor(private alunoService: AlunoServiceIF, private mensagemService: MensagemIF,
               private roteador: Router, private rotaAtivada: ActivatedRoute) {
     this.nomeBotaoAcao = 'Cadastrar';
     this.estahCadastrando = true;

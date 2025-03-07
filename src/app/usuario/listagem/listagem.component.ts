@@ -4,6 +4,8 @@ import {ALUNOS} from "../../shared/modelo/ALUNOS";
 import {AlunoRestService} from "../../shared/services/aluno-rest.service";
 import {Router} from "@angular/router";
 import {AlunoFireService} from "../../shared/services/aluno-fire.service";
+import {MensagemIF} from "../../shared/modelo/MensagemIF";
+import {AlunoServiceIF} from "../../shared/services/aluno-serviceIF";
 
 @Component({
   selector: 'app-listagem',
@@ -15,7 +17,7 @@ import {AlunoFireService} from "../../shared/services/aluno-fire.service";
 export class ListagemComponent implements OnInit {
   ALUNOS: Aluno[] = [];
 
-  constructor(private alunoService: AlunoFireService, private roteador: Router) {
+  constructor(private alunoService: AlunoServiceIF, private roteador: Router) {
   }
 
   ngOnInit() {

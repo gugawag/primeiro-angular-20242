@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import Swal from 'sweetalert2';
-import {IMensagem} from "../modelo/IMensagem";
+import {MensagemIF} from "../modelo/MensagemIF";
 
 @Injectable({
   providedIn: 'root'
 })
-export class MensagemSweetService extends IMensagem{
+export class MensagemSweetService extends MensagemIF{
 
   constructor() {
       super();

@@ -3,7 +3,7 @@
     {
       "id": "1",
       "matricula": "11111111111",
-      "nome": "aluno 1",
+      "nome": "aluno 145",
       "idade": 24,
       "likes": 0
     },
@@ -12,12 +12,6 @@
       "matricula": "33333333333",
       "nome": "Aluno Assíduo 3",
       "idade": 33
-    },
-    {
-      "id": "0ed3",
-      "matricula": "4",
-      "nome": "aluno 4",
-      "idade": 44
     },
     {
       "id": "f168",
@@ -48,12 +42,6 @@
       "matricula": "8",
       "nome": "aluno8",
       "idade": 8
-    },
-    {
-      "id": "2fc3",
-      "matricula": "9",
-      "nome": "aluno9",
-      "idade": 9
     },
     {
       "id": "19cb",

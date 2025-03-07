@@ -3,13 +3,14 @@ import {HttpClient} from "@angular/common/http";
 import {Aluno} from "../modelo/aluno";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
+import {AlunoServiceIF} from "./aluno-serviceIF";
 
 @Injectable({
   providedIn: 'root'
 })
-export class AlunoRestService {
+export class AlunoRestService implements AlunoServiceIF {
 
-  private URL_ALUNOS = environment.URL_ALUNOS
+  private URL_ALUNOS = environment.URL_ALUNOS;
   private MAIOR_IDADE = 18;
 
   constructor(private http: HttpClient) { }
